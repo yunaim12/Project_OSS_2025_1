@@ -10,7 +10,8 @@ def main():
         print("2. 지출 목록 보기")
         print("3. 총 지출 보기")
         print("4. 지출 분석")
-        print("5. 종료")
+        print("5. 통화로 환산")
+        print("6. 종료")
         choice = input("선택 > ")
 
         if choice == "1":
@@ -38,6 +39,19 @@ def main():
             budget.analyze_budget(target)
 
         elif choice == "5":
+             print("환산할 통화를 선택하세요:")
+             print("1. USD (달러)")
+             print("2. JPY (엔화)")
+             print("3. CNY (위안)")
+             currency_choice = input("선택 > ")
+
+             currency_map = {'1': 'USD', '2': 'JPY', '3': 'CNY'}
+             currency = currency_map.get(currency_choice)
+
+             if currency:
+                budget.convert_currency(currency)
+
+        elif choice == "6":
             print("가계부를 종료합니다.")
             break
 

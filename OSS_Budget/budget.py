@@ -39,5 +39,29 @@ class Budget:
             diff = total - target_amount
             print(f"예산보다 {diff}원 초과 지출했습니다.. 좀 더 노력하세요!\n")
 
+    def convert_currency(self, currency):
+            total_krw = sum(e.amount for e in self.expenses)
+            # 2025.06.04 기준 환율 적용
+            rates = {
+                'USD': 0.00074,  # 달러
+                'JPY': 0.12,     # 엔화
+                'CNY': 0.0054    # 위안
+                    }
+
+            currency_names = {
+                'USD': '달러',
+                'JPY': '엔화',
+                'CNY': '위안'
+                }
+
+            if currency not in rates:
+               print("지원하지 않는 통화입니다.\n")
+               return
+
+            converted = total_krw * rates[currency]
+            print(f"\n총 지출: {total_krw}원")
+            print(f"→ {currency_names[currency]} 기준 환산: {converted:.2f} {currency}\n")
+
+
 
 
